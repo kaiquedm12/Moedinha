@@ -1,0 +1,13 @@
+.page{display:flex;flex-direction:column;gap:16px}
+.page-header{display:flex;align-items:center;justify-content:space-between}
+.grid.two{display:grid;grid-template-columns:1fr 2fr;gap:16px}
+@media (max-width:900px){.grid.two{grid-template-columns:1fr}}
+.tx-form{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:900px){.tx-form{grid-template-columns:1fr}}
+.tx-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.tx-item{display:flex;align-items:stretch;gap:10px;border:1px solid var(--border);border-radius:10px;padding:8px 10px;background:#fff}
+.tx-meta{flex:1}
+.tx-top{display:flex;justify-content:space-between}
+.amount.despesa{color:var(--negative);font-weight:700}
+.icon-btn{border:none;background:transparent;color:var(--muted);font-size:20px;padding:0 6px}
+.icon-btn:hover{color:#0f172a}

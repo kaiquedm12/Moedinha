@@ -1,0 +1,6 @@
+.sidebar{width:240px;flex:0 0 240px;background:#fff;border-right:1px solid var(--border);padding:20px 12px;position:sticky;top:0;height:100vh}
+.brand{font-weight:800;font-size:18px;margin:4px 8px 16px}
+.nav{display:flex;flex-direction:column;gap:4px}
+.link{padding:8px 12px;border-radius:8px;color:#065f46}
+.link:hover{background:#dcfce7}
+.link.active{background:#fef3c7;color:#065f46;font-weight:700;border:1px solid #fde68a}

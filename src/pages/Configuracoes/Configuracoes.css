@@ -1,0 +1,4 @@
+.page{display:flex;flex-direction:column;gap:16px}
+.grid.one{display:grid;grid-template-columns:1fr;gap:16px}
+.cfg-row{display:flex;justify-content:space-between;align-items:center}
+button.danger{border-color:#fecaca;color:#b91c1c}

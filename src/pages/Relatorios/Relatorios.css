@@ -1,0 +1,7 @@
+.page{display:flex;flex-direction:column;gap:16px}
+.table{display:grid;gap:6px}
+.thead,.tfoot{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;font-weight:700;color:#334155}
+.tbody{display:grid;gap:6px}
+.row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;align-items:center;background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px}
+.pos{color:var(--positive)}
+.neg{color:var(--negative)}
