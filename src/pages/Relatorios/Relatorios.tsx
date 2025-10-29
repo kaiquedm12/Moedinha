@@ -1,8 +1,8 @@
 import React from 'react'
-import Card from '../../components/Card'
 import { useFinance } from '../../context/FinanceContext'
-import './Relatorios.css'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts'
+import { BarChart3 } from 'lucide-react'
 
 type Row = { categoria: string; receitas: number; despesas: number; saldo: number }
 
@@ -29,11 +29,24 @@ export default function Relatorios() {
   const COLORS = { receitas: '#16a34a', despesas: '#f59e0b' }
 
   return (
-    <div className="page">
-      <div className="page-header"><h1>Relatórios</h1></div>
-      <div className="grid two" style={{ marginBottom: 16 }}>
-        <Card title="Por categoria (barras)">
-          <div style={{ width: '100%', height: 260 }}>
+      <div className="p-6 space-y-6">
+        <div className="flex items-center gap-3">
+          <div className="p-3 rounded-lg bg-primary/10">
+            <BarChart3 className="h-6 w-6 text-primary" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">Relatórios</h1>
+            <p className="text-muted-foreground">Análise detalhada das suas finanças</p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Por Categoria (Barras)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="w-full h-[280px]">
             <ResponsiveContainer>
               <BarChart data={porCategoria}>
                 <XAxis dataKey="categoria" hide={porCategoria.length < 4} interval={0} angle={0} tick={{ fontSize: 12 }} />
@@ -45,9 +58,15 @@ export default function Relatorios() {
               </BarChart>
             </ResponsiveContainer>
           </div>
+          </CardContent>
         </Card>
-        <Card title="Receitas vs Despesas (pizza)">
-          <div style={{ width: '100%', height: 260, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Receitas vs Despesas (Pizza)</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="w-full h-[280px] flex items-center justify-center">
             <ResponsiveContainer>
               <PieChart>
                 <Pie
@@ -68,34 +87,67 @@ export default function Relatorios() {
               </PieChart>
             </ResponsiveContainer>
           </div>
+          </CardContent>
         </Card>
       </div>
+
       <Card>
-        <div className="table">
-          <div className="thead">
-            <div>Categoria</div>
-            <div>Receitas</div>
-            <div>Despesas</div>
-            <div>Saldo</div>
+        <CardHeader>
+          <CardTitle>Resumo por Categoria</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="rounded-md border">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b bg-muted/50">
+                    <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">Categoria</th>
+                    <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">Receitas</th>
+                    <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">Despesas</th>
+                    <th className="h-12 px-4 text-right align-middle font-medium text-muted-foreground">Saldo</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {porCategoria.length === 0 && (
+                    <tr>
+                      <td colSpan={4} className="h-24 text-center text-muted-foreground">
+                        Sem dados disponíveis
+                      </td>
+                    </tr>
+                  )}
+                  {porCategoria.map(r => (
+                    <tr key={r.categoria} className="border-b transition-colors hover:bg-muted/50">
+                      <td className="p-4 align-middle font-medium">{r.categoria}</td>
+                      <td className="p-4 align-middle text-right font-semibold text-green-600 dark:text-green-400">
+                        R$ {r.receitas.toFixed(2)}
+                      </td>
+                      <td className="p-4 align-middle text-right font-semibold text-amber-600 dark:text-amber-400">
+                        R$ {r.despesas.toFixed(2)}
+                      </td>
+                      <td className={`p-4 align-middle text-right font-semibold ${r.saldo >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                        R$ {r.saldo.toFixed(2)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tfoot>
+                  <tr className="border-t-2 bg-muted/50 font-bold">
+                    <td className="p-4 align-middle">Total</td>
+                    <td className="p-4 align-middle text-right text-green-600 dark:text-green-400">
+                      R$ {total.receitas.toFixed(2)}
+                    </td>
+                    <td className="p-4 align-middle text-right text-amber-600 dark:text-amber-400">
+                      R$ {total.despesas.toFixed(2)}
+                    </td>
+                    <td className={`p-4 align-middle text-right ${total.saldo >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                      R$ {total.saldo.toFixed(2)}
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
           </div>
-          <div className="tbody">
-            {porCategoria.length === 0 && <div className="row muted">Sem dados</div>}
-            {porCategoria.map(r => (
-              <div key={r.categoria} className="row">
-                <div>{r.categoria}</div>
-                <div className="pos">R$ {r.receitas.toFixed(2)}</div>
-                <div className="neg">R$ {r.despesas.toFixed(2)}</div>
-                <div className={r.saldo >= 0 ? 'pos' : 'neg'}>R$ {r.saldo.toFixed(2)}</div>
-              </div>
-            ))}
-          </div>
-          <div className="tfoot">
-            <div>Total</div>
-            <div className="pos">R$ {total.receitas.toFixed(2)}</div>
-            <div className="neg">R$ {total.despesas.toFixed(2)}</div>
-            <div className={total.saldo >= 0 ? 'pos' : 'neg'}>R$ {total.saldo.toFixed(2)}</div>
-          </div>
-        </div>
+        </CardContent>
       </Card>
     </div>
   )
