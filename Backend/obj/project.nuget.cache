@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Hz+w80Bl4ZE=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\GitHub\\Moedinha\\backend\\Backend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kaiqu\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.10\\microsoft.aspnetcore.openapi.9.0.10.nupkg.sha512",
+    "C:\\Users\\kaiqu\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}
