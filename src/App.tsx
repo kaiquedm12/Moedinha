@@ -1,12 +1,11 @@
 import { Outlet } from 'react-router-dom'
 import Sidebar from './components/Sidebar/Sidebar'
-import './index.css'
 
 export default function App() {
   return (
-    <div className="app">
+    <div className="flex min-h-screen">
       <Sidebar />
-      <main className="content">
+      <main className="flex-1 p-6 bg-background">
         <Outlet />
       </main>
     </div>

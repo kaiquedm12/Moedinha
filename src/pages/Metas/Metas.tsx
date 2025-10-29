@@ -1,6 +1,9 @@
 import React from 'react'
-import Card from '../../components/Card'
-import './Metas.css'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Target, Plus, Minus, Trash2 } from 'lucide-react'
 
 type Meta = { id: string; nome: string; alvo: number; atual: number }
 const STORAGE_KEY = 'moedinha:metas'
@@ -30,37 +33,116 @@ export default function Metas() {
   const remover = (id: string) => setMetas(prev => prev.filter(m => m.id !== id))
 
   return (
-    <div className="page metas">
-      <div className="page-header"><h1>Metas</h1></div>
-      <div className="grid two">
-        <Card title="Nova meta">
-          <form className="tx-form" onSubmit={add}>
-            <input placeholder="Nome" value={nome} onChange={e => setNome(e.target.value)} />
-            <input type="number" step="0.01" placeholder="Valor alvo" value={alvo || ''} onChange={e => setAlvo(parseFloat(e.target.value) || 0)} />
-            <button type="submit">Adicionar</button>
-          </form>
+    <div className="p-6 space-y-6">
+      <div className="flex items-center gap-3">
+        <div className="p-3 rounded-lg bg-primary/10">
+          <Target className="h-6 w-6 text-primary" />
+        </div>
+        <div>
+          <h1 className="text-3xl font-bold">Metas</h1>
+          <p className="text-muted-foreground">Defina e acompanhe suas metas financeiras</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Nova Meta</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={add} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="nome">Nome da Meta</Label>
+                <Input 
+                  id="nome"
+                  placeholder="Ex: Férias, Carro..." 
+                  value={nome} 
+                  onChange={e => setNome(e.target.value)} 
+                />
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="alvo">Valor Alvo</Label>
+                <Input 
+                  id="alvo"
+                  type="number" 
+                  step="0.01" 
+                  placeholder="0.00" 
+                  value={alvo || ''} 
+                  onChange={e => setAlvo(parseFloat(e.target.value) || 0)} 
+                />
+              </div>
+              
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
+                <Plus className="h-4 w-4 mr-2" />
+                Adicionar Meta
+              </Button>
+            </form>
+          </CardContent>
         </Card>
-        <Card title="Acompanhar metas">
-          <ul className="meta-list">
-            {metas.length === 0 && <li className="muted">Sem metas</li>}
-            {metas.map(m => {
-              const pct = m.alvo ? Math.round((m.atual / m.alvo) * 100) : 0
-              return (
-                <li key={m.id} className="meta-item">
-                  <div className="meta-top">
-                    <strong>{m.nome}</strong>
-                    <span className="muted">R$ {m.atual.toFixed(2)} / R$ {m.alvo.toFixed(2)} • {pct}%</span>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Acompanhar Metas</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {metas.length === 0 && (
+                <p className="text-sm text-muted-foreground text-center py-4">Sem metas cadastradas</p>
+              )}
+              {metas.map(m => {
+                const pct = m.alvo ? Math.round((m.atual / m.alvo) * 100) : 0
+                return (
+                  <div key={m.id} className="p-4 rounded-lg border bg-card space-y-3">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h3 className="font-semibold text-base">{m.nome}</h3>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          R$ {m.atual.toFixed(2)} / R$ {m.alvo.toFixed(2)} • {pct}%
+                        </p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                        onClick={() => remover(m.id)}
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                    
+                    <div className="w-full bg-secondary rounded-full h-2.5 overflow-hidden">
+                      <div 
+                        className="bg-primary h-full transition-all duration-300 rounded-full" 
+                        style={{ width: `${pct}%` }}
+                      />
+                    </div>
+                    
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="flex-1 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                        onClick={() => atualizar(m.id, 50)}
+                      >
+                        <Plus className="h-4 w-4 mr-1" />
+                        R$ 50
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="flex-1"
+                        onClick={() => atualizar(m.id, -50)}
+                      >
+                        <Minus className="h-4 w-4 mr-1" />
+                        R$ 50
+                      </Button>
+                    </div>
                   </div>
-                  <div className="bar"><div className="fill" style={{ width: `${pct}%` }} /></div>
-                  <div className="meta-actions">
-                    <button onClick={() => atualizar(m.id, 50)}>+50</button>
-                    <button onClick={() => atualizar(m.id, -50)}>-50</button>
-                    <button className="danger" onClick={() => remover(m.id)}>Remover</button>
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
+                )
+              })}
+            </div>
+          </CardContent>
         </Card>
       </div>
     </div>
