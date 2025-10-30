@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kaiqu\\OneDrive\\Documentos\\GitHub\\Moedinha\\backend\\Backend.csproj": {}
+    "C:\\Users\\kaiqu\\OneDrive\\Documentos\\GitHub\\Moedinha\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kaiqu\\OneDrive\\Documentos\\GitHub\\Moedinha\\backend\\Backend.csproj": {
+    "C:\\Users\\kaiqu\\OneDrive\\Documentos\\GitHub\\Moedinha\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\GitHub\\Moedinha\\backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\GitHub\\Moedinha\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\GitHub\\Moedinha\\backend\\Backend.csproj",
+        "projectPath": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\GitHub\\Moedinha\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\kaiqu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\GitHub\\Moedinha\\backend\\obj\\",
+        "outputPath": "C:\\Users\\kaiqu\\OneDrive\\Documentos\\GitHub\\Moedinha\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\kaiqu\\AppData\\Roaming\\NuGet\\NuGet.Config"
