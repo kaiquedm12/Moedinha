@@ -29,7 +29,7 @@ export default function Relatorios() {
   const COLORS = { receitas: '#16a34a', despesas: '#f59e0b' }
 
   return (
-      <div className="p-6 space-y-6">
+    <div className="container mx-auto max-w-7xl px-4 md:px-6 py-6 space-y-6">
         <div className="flex items-center gap-3">
           <div className="p-3 rounded-lg bg-primary/10">
             <BarChart3 className="h-6 w-6 text-primary" />

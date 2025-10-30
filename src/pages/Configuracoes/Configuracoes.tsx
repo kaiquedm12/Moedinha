@@ -12,7 +12,7 @@ export default function Configuracoes() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="container mx-auto max-w-7xl px-4 md:px-6 py-6 space-y-6">
       <div className="flex items-center gap-3">
         <div className="p-3 rounded-lg bg-primary/10">
           <Settings2 className="h-6 w-6 text-primary" />

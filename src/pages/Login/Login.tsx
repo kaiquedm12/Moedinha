@@ -29,7 +29,7 @@ export default function Login() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-emerald-50 to-yellow-50 p-4">
+    <div className="min-h-screen grid place-items-center bg-background p-4">
       <Card className="w-full max-w-md border-2 border-primary">
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-3xl font-bold text-primary">💰 Moedinha</CardTitle>
