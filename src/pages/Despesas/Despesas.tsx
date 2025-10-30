@@ -22,7 +22,7 @@ export default function Despesas() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="container mx-auto max-w-7xl px-4 md:px-6 py-6 space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="p-3 rounded-lg bg-amber-100 dark:bg-amber-900/30">

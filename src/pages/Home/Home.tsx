@@ -24,7 +24,7 @@ export default function Home() {
   }
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="container mx-auto max-w-7xl px-4 md:px-6 py-6 space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <Card className="border-l-4 border-l-primary">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
